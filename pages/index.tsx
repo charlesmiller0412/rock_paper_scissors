@@ -7,6 +7,7 @@ import useGameStore from "../appStore";
 import RulesBtn from "../components/rulesBtn";
 import Rules from "../components/rules";
 import { type } from "os";
+import StepOne from "../components/main/stepOne";
 
 const Home: NextPage = () => {
     const wins = useGameStore((state: any) => state.wins);
@@ -97,6 +98,7 @@ const Home: NextPage = () => {
 
             <main>
                 <Header />
+                <StepOne />
                 {showRules ? <Rules /> : ""}
             </main>
 
