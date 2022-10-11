@@ -2,11 +2,19 @@ import { useState, useEffect } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import Header from "../components/header";
+import useGameStore from "../appStore";
+import RulesBtn from "../components/rulesBtn";
+import Rules from "../components/rules";
+import { type } from "os";
 
 const Home: NextPage = () => {
+    const wins = useGameStore((state: any) => state.wins);
+    const updateWins = useGameStore((state: any) => state.updateWins);
+    const showRules = useGameStore((state: any) => state.showRules);
+
     let aiSelect: number = 0;
     let input: number = 0;
-    const [wins, setWins] = useState(0);
 
     // data retreival
     function getRandomInt(max: number) {
@@ -39,14 +47,14 @@ const Home: NextPage = () => {
         ) {
             alert("Loser");
             if (wins > 0) {
-                setWins(wins - 1);
+                updateWins(wins - 1);
             }
         } else if (aiSelect === input) {
             alert("Draw");
             return;
         } else {
             alert("Winner");
-            setWins(wins + 1);
+            updateWins(wins + 1);
         }
     }
 
@@ -61,7 +69,7 @@ const Home: NextPage = () => {
     useEffect(() => {
         const winData = Number(localStorage.getItem("wins"));
         if (winData !== null) {
-            setWins(winData);
+            updateWins(winData);
         }
     }, []);
 
@@ -73,7 +81,7 @@ const Home: NextPage = () => {
     // begin the game after 2 secs (will be removed when frontend complete)
     useEffect(() => {
         const timer = setTimeout(() => {
-            gamePlay();
+            // gamePlay();
         }, 2000);
 
         return () => {
@@ -85,19 +93,16 @@ const Home: NextPage = () => {
         <div>
             <Head>
                 <title>Charles Miller | Rock, Paper, Scissors, Spock</title>
-                <meta
-                    name="description"
-                    content="Rock, Paper, Scissors, Spock game created by Charles Miller as a frontendmentor.io challenge."
-                />
-                <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main style={{ fontSize: "3rem" }}>
-                {wins}
-                <button onClick={gamePlay}>Play Again?</button>
+            <main>
+                <Header />
+                {showRules ? <Rules /> : ""}
             </main>
 
-            <footer></footer>
+            <footer>
+                <RulesBtn />
+            </footer>
         </div>
     );
 };
