@@ -6,13 +6,8 @@ import Header from "../components/header";
 import useGameStore from "../appStore";
 import RulesBtn from "../components/rulesBtn";
 import Rules from "../components/rules";
-import { type } from "os";
-// import StepOne from "../components/main/stepOne";
-import dynamic from "next/dynamic";
-
-const StepOne = dynamic(() => import("../components/main/stepOne"), {
-    suspense: true,
-});
+import StepOne from "../components/main/stepOne";
+import { PlayAgainBtn } from "../components/main/stepThree/playAgainBtn";
 
 const Home: NextPage = () => {
     const showRules = useGameStore((state: any) => state.showRules);
@@ -21,6 +16,7 @@ const Home: NextPage = () => {
     const input = useGameStore((state: any) => state.input);
     const aiSelect = useGameStore((state: any) => state.aiSelect);
     const setAiSelect = useGameStore((state: any) => state.setAiSelect);
+    const step = useGameStore((state: any) => state.step);
 
     // data retreival
     function getRandomInt(max: number) {
@@ -74,7 +70,15 @@ const Home: NextPage = () => {
 
             <main>
                 <Header />
-                <StepOne gamePlay={gamePlay} />
+                {step == 1 ? (
+                    <StepOne gamePlay={gamePlay} />
+                ) : step == 2 ? (
+                    ""
+                ) : step == 3 ? (
+                    ""
+                ) : (
+                    ""
+                )}
                 {showRules ? <Rules /> : ""}
             </main>
 

@@ -1,6 +1,7 @@
 .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 70rem;
     border: 3px solid $headerOutline;
     border-radius: 1.5rem;
@@ -15,6 +16,7 @@
         position: relative;
     }
     &__score {
+        position: relative;
         background: linear-gradient(0deg, #f3f3f3 0%, #ffffff 100%);
         box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.196706);
         border-radius: 8px;
@@ -34,6 +36,57 @@
             line-height: 1.9rem;
             letter-spacing: 0.25rem;
             color: $scoreText;
+        }
+    }
+    &__reset {
+        position: absolute;
+        bottom: -1.8rem;
+        right: 50%;
+        transform: translateX(50%);
+        font-size: 1.4rem;
+        white-space: nowrap;
+        letter-spacing: 0.25rem;
+        background: transparent;
+        border: 0;
+        color: #fff;
+        -webkit-transform: translateX(50%);
+        -moz-transform: translateX(50%);
+        -ms-transform: translateX(50%);
+        -o-transform: translateX(50%);
+        transition: all 0.2s;
+        -webkit-transition: all 0.2s;
+        -moz-transition: all 0.2s;
+        -ms-transition: all 0.2s;
+        -o-transition: all 0.2s;
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: -0.1rem;
+            left: 0;
+            width: 0%;
+            border-bottom: 1px solid #fff;
+        }
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0.1rem;
+            right: 0;
+            width: 0;
+            border-top: 1px solid #fff;
+        }
+        &:hover {
+            text-decoration: underline;
+            color: $headerOutline;
+            cursor: pointer;
+            &::after,
+            &::before {
+                width: 100%;
+                transition: all 0.4s;
+                -webkit-transition: all 0.4s;
+                -moz-transition: all 0.4s;
+                -ms-transition: all 0.4s;
+                -o-transition: all 0.4s;
+            }
         }
     }
 }

@@ -1,0 +1,13 @@
+.playAgainBtn {
+    width: 22rem;
+    height: 4.8rem;
+    background: linear-gradient(0deg, #f3f3f3 0%, #ffffff 100%);
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.196706);
+    border-radius: 8px;
+    text-transform: uppercase;
+    color: $darkText;
+    font-size: 1.6rem;
+    font-weight: $font-semiBold;
+    line-height: 1.9rem;
+    letter-spacing: 0.25rem;
+}

@@ -33,6 +33,15 @@ export default function Header() {
             <div className="header__score">
                 <span>Score</span>
                 {wins}
+                <button
+                    className="header__reset"
+                    onClick={() => {
+                        localStorage.clear();
+                        updateWins(0);
+                    }}
+                >
+                    Reset Score
+                </button>
             </div>
         </header>
     );

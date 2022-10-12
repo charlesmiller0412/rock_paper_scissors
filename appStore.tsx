@@ -5,6 +5,8 @@ const useGameStore = create((set) => ({
     updateWins: (key: any) => set({ wins: key }),
     showRules: false,
     setShowRules: (key: any) => set({ showRules: key }),
+    step: 1,
+    setStep: (key: any) => set({ aiSelect: key }),
     input: null,
     setInput: (key: any) => set({ input: key }),
     aiSelect: false,
