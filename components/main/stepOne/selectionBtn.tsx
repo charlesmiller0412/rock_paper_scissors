@@ -1,7 +1,7 @@
 import Image from "next/image";
-export const SelectionBtn = (props: any) => {
+export const SelectionBtn = (props: any, id: any) => {
     return (
-        <div className={props.className}>
+        <div className={props.className} id={id} onClick={props.onClick}>
             <div className="selectionBtn__dark">
                 <div className="selectionBtn__light">
                     <div className="selectionBtn__gray">

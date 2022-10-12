@@ -7,28 +7,28 @@ import useGameStore from "../appStore";
 import RulesBtn from "../components/rulesBtn";
 import Rules from "../components/rules";
 import { type } from "os";
-import StepOne from "../components/main/stepOne";
+// import StepOne from "../components/main/stepOne";
+import dynamic from "next/dynamic";
+
+const StepOne = dynamic(() => import("../components/main/stepOne"), {
+    suspense: true,
+});
 
 const Home: NextPage = () => {
+    const showRules = useGameStore((state: any) => state.showRules);
     const wins = useGameStore((state: any) => state.wins);
     const updateWins = useGameStore((state: any) => state.updateWins);
-    const showRules = useGameStore((state: any) => state.showRules);
-
-    let aiSelect: number = 0;
-    let input: number = 0;
+    const input = useGameStore((state: any) => state.input);
+    const aiSelect = useGameStore((state: any) => state.aiSelect);
+    const setAiSelect = useGameStore((state: any) => state.setAiSelect);
 
     // data retreival
     function getRandomInt(max: number) {
         return Math.floor(Math.random() * max);
     }
 
-    function getInput() {
-        input = Number(prompt("Pick a number between 0 and 4"));
-        console.log("input: " + input);
-    }
-
     function getAI() {
-        aiSelect = getRandomInt(5);
+        setAiSelect(getRandomInt(5));
         console.log("aiSelect: " + aiSelect);
     }
 
@@ -46,49 +46,25 @@ const Home: NextPage = () => {
             (aiSelect == 4 && input == 3) ||
             (aiSelect == 4 && input == 1)
         ) {
-            alert("Loser");
+            console.log("Loser");
             if (wins > 0) {
                 updateWins(wins - 1);
             }
         } else if (aiSelect === input) {
-            alert("Draw");
+            console.log("Draw");
             return;
         } else {
-            alert("Winner");
+            console.log("Winner");
             updateWins(wins + 1);
         }
     }
 
     function gamePlay() {
-        getInput();
         getAI();
         logic(aiSelect, input);
+        console.log(aiSelect + " " + input);
         return;
     }
-
-    // get wins from localstorage and conver to number
-    useEffect(() => {
-        const winData = Number(localStorage.getItem("wins"));
-        if (winData !== null) {
-            updateWins(winData);
-        }
-    }, []);
-
-    // save wins to local storage as wins change
-    useEffect(() => {
-        localStorage.setItem("wins", JSON.stringify(wins));
-    }, [wins]);
-
-    // begin the game after 2 secs (will be removed when frontend complete)
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            // gamePlay();
-        }, 2000);
-
-        return () => {
-            clearTimeout(timer);
-        };
-    }, []);
 
     return (
         <div>
@@ -98,7 +74,7 @@ const Home: NextPage = () => {
 
             <main>
                 <Header />
-                <StepOne />
+                <StepOne gamePlay={gamePlay} />
                 {showRules ? <Rules /> : ""}
             </main>
 

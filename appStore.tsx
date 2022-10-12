@@ -5,6 +5,12 @@ const useGameStore = create((set) => ({
     updateWins: (key: any) => set({ wins: key }),
     showRules: false,
     setShowRules: (key: any) => set({ showRules: key }),
+    input: null,
+    setInput: (key: any) => set({ input: key }),
+    aiSelect: false,
+    setAiSelect: (key: any) => set({ aiSelect: key }),
+    currentPick: null,
+    setCurrentPick: (key: any) => set({ aiSelect: key }),
 }));
 
 export default useGameStore;

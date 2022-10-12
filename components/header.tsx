@@ -1,8 +1,23 @@
+import { useEffect } from "react";
 import Image from "next/image";
 import useGameStore from "../appStore";
 
 export default function Header() {
     const wins = useGameStore((state: any) => state.wins);
+    const updateWins = useGameStore((state: any) => state.updateWins);
+
+    // get wins from localstorage and conver to number
+    useEffect(() => {
+        const winData = Number(localStorage.getItem("wins"));
+        if (winData !== null) {
+            updateWins(winData);
+        }
+    }, []);
+
+    // save wins to local storage as wins change
+    useEffect(() => {
+        localStorage.setItem("wins", JSON.stringify(wins));
+    }, [wins]);
 
     return (
         <header className="header">
