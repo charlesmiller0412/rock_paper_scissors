@@ -1,0 +1,185 @@
+@import "./_variables";
+
+.playAgainBtn {
+    width: 22rem;
+    height: 4.8rem;
+    background: linear-gradient(0deg, #f3f3f3 0%, #ffffff 100%);
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.196706);
+    border-radius: 8px;
+    text-transform: uppercase;
+    color: $darkText;
+    font-size: 1.6rem;
+    font-weight: $font-semiBold;
+    line-height: 1.9rem;
+    letter-spacing: 0.25rem;
+    cursor: pointer;
+
+    &:hover {
+        color: red;
+        transition: all 0.2s;
+        -webkit-transition: all 0.2s;
+        -moz-transition: all 0.2s;
+        -ms-transition: all 0.2s;
+        -o-transition: all 0.2s;
+    }
+}
+
+.selectionBtn {
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    width: 145px;
+    height: 148px;
+    border-radius: 50%;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.196706);
+    position: relative;
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    &__dark {
+        width: 145px;
+        height: 148px;
+        border-radius: 50%;
+        box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.196706);
+        position: relative;
+    }
+    &__light {
+        border-radius: 50%;
+        width: 145px;
+        height: 141px;
+        display: grid;
+        place-items: center;
+    }
+    &__gray {
+        width: 111px;
+        height: 110px;
+        background: #babfd4;
+        border-radius: 50%;
+        position: relative;
+    }
+    &__white {
+        background: linear-gradient(0deg, #f3f3f3 0%, #dadada 98.34%);
+        border-radius: 50%;
+        height: 105px;
+        width: 111px;
+        position: absolute;
+        bottom: 0;
+        display: grid;
+        place-items: center;
+        &--icon {
+            position: relative;
+            width: 7rem;
+            height: 7rem;
+        }
+    }
+    &__outerRing {
+        width: 175px;
+        height: 178px;
+        left: 20%;
+        top: -10%;
+        transform: translate(-25%);
+        z-index: 0;
+        position: absolute;
+        background-color: #fff;
+        opacity: 0;
+        mix-blend-mode: normal;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        -webkit-transform: translate(-25%);
+        -moz-transform: translate(-25%);
+        -ms-transform: translate(-25%);
+        -o-transform: translate(-25%);
+    }
+    &:hover {
+        cursor: pointer;
+        & .selectionBtn__outerRing {
+            opacity: 0.5;
+            transition: all 0.2s;
+            -webkit-transition: all 0.2s;
+            -moz-transition: all 0.2s;
+            -ms-transition: all 0.2s;
+            -o-transition: all 0.2s;
+        }
+    }
+}
+
+.large {
+    scale: 2;
+    &:hover {
+        filter: brightness(1);
+        -webkit-filter: brightness(1);
+        cursor: default;
+    }
+}
+
+.rock .selectionBtn {
+    &__dark {
+        background: #9d1634;
+    }
+    &__light {
+        background: #db2e4d;
+    }
+}
+
+.lizard .selectionBtn {
+    &__dark {
+        background: #5f37a8;
+    }
+    &__light {
+        background: #834ee3;
+    }
+}
+
+.spock .selectionBtn {
+    &__dark {
+        background: #2d8dab;
+    }
+    &__light {
+        background: #3fb7cd;
+    }
+}
+
+.paper .selectionBtn {
+    &__dark {
+        background: #2a45c2;
+    }
+    &__light {
+        background: #4664f4;
+    }
+}
+
+.scissors .selectionBtn {
+    &__dark {
+        background: #c76c1b;
+    }
+    &__light {
+        background: #eb9f0e;
+    }
+}
+
+.rulesBtn {
+    position: absolute;
+    bottom: 3.2rem;
+    right: 3.2rem;
+    font-size: 1.6rem;
+    font-weight: $font-semiBold;
+    letter-spacing: 0.25rem;
+    text-transform: uppercase;
+    color: #fff;
+    border: 1px solid #ffffff;
+    border-radius: 8px;
+    padding: 1rem 3.6rem;
+    background-color: transparent;
+    &:hover {
+        background-color: #fff;
+        color: hsl(229, 25%, 31%);
+        cursor: pointer;
+    }
+}

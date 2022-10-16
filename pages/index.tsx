@@ -8,24 +8,33 @@ import RulesBtn from "../components/rulesBtn";
 import Rules from "../components/rules";
 import StepOne from "../components/main/stepOne";
 import { PlayAgainBtn } from "../components/main/stepThree/playAgainBtn";
+import StepTwo from "../components/main/stepTwo/stepTwo";
 
 const Home: NextPage = () => {
     const showRules = useGameStore((state: any) => state.showRules);
     const wins = useGameStore((state: any) => state.wins);
     const updateWins = useGameStore((state: any) => state.updateWins);
     const input = useGameStore((state: any) => state.input);
+    const setInput = useGameStore((state: any) => state.setInput);
     const aiSelect = useGameStore((state: any) => state.aiSelect);
     const setAiSelect = useGameStore((state: any) => state.setAiSelect);
     const step = useGameStore((state: any) => state.step);
+    const setIsLoading = useGameStore((state: any) => state.setIsLoading);
+    const setResult = useGameStore((state: any) => state.setResult);
 
     // data retreival
-    function getRandomInt(max: number) {
-        return Math.floor(Math.random() * max);
+    function getRandomInt(max: number, min: number) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
     function getAI() {
-        setAiSelect(getRandomInt(5));
-        console.log("aiSelect: " + aiSelect);
+        let x = 0;
+        x = getRandomInt(0, 4);
+        if (x == input || x === null) {
+            getRandomInt(0, 4);
+        } else {
+            setAiSelect(x);
+        }
     }
 
     // game logic and main function
@@ -42,23 +51,31 @@ const Home: NextPage = () => {
             (aiSelect == 4 && input == 3) ||
             (aiSelect == 4 && input == 1)
         ) {
-            console.log("Loser");
             if (wins > 0) {
                 updateWins(wins - 1);
             }
-        } else if (aiSelect === input) {
-            console.log("Draw");
-            return;
+            setResult("loss");
+        } else if (aiSelect == input) {
+            console.log("draw");
+            setResult("draw");
         } else {
-            console.log("Winner");
             updateWins(wins + 1);
+            setResult("win");
         }
     }
 
     function gamePlay() {
+        setIsLoading(true);
         getAI();
         logic(aiSelect, input);
-        console.log(aiSelect + " " + input);
+        console.log("input: " + input + " ai: " + aiSelect);
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1500);
+        setTimeout(() => {
+            document.getElementById("announce")?.classList.add("widen");
+            document.getElementById("playAgain")?.classList.add("show");
+        }, 3000);
         return;
     }
 
@@ -70,11 +87,11 @@ const Home: NextPage = () => {
 
             <main>
                 <Header />
-                {step == 1 ? (
+                {step === 1 ? (
                     <StepOne gamePlay={gamePlay} />
-                ) : step == 2 ? (
-                    ""
-                ) : step == 3 ? (
+                ) : step === 2 ? (
+                    <StepTwo />
+                ) : step === 3 ? (
                     ""
                 ) : (
                     ""

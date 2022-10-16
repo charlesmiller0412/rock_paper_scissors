@@ -12,6 +12,7 @@ export default function Header() {
         if (winData !== null) {
             updateWins(winData);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // save wins to local storage as wins change
@@ -36,7 +37,6 @@ export default function Header() {
                 <button
                     className="header__reset"
                     onClick={() => {
-                        localStorage.clear();
                         updateWins(0);
                     }}
                 >

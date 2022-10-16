@@ -7,9 +7,7 @@ export default function RulesBtn() {
     function handleClick() {
         setShowRules(true);
     }
-    useEffect(() => {
-        handleClick;
-    }, []);
+
     return (
         <button className="rulesBtn" onClick={handleClick}>
             Rules

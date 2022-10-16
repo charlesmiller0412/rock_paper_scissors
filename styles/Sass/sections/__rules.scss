@@ -47,23 +47,3 @@
         }
     }
 }
-
-.rulesBtn {
-    position: absolute;
-    bottom: 3.2rem;
-    right: 3.2rem;
-    font-size: 1.6rem;
-    font-weight: $font-semiBold;
-    letter-spacing: 0.25rem;
-    text-transform: uppercase;
-    color: #fff;
-    border: 1px solid #ffffff;
-    border-radius: 8px;
-    padding: 1rem 3.6rem;
-    background-color: transparent;
-    &:hover {
-        background-color: #fff;
-        color: hsl(229, 25%, 31%);
-        cursor: pointer;
-    }
-}
