@@ -48,7 +48,7 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 
 ### Built with
 
--   TypeSctipt
+-   TypeScript
 -   CSS custom properties
 -   [React](https://reactjs.org/) - JS library
 -   [Next.js](https://nextjs.org/) - React framework
