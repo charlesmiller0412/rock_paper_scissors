@@ -34,15 +34,15 @@ export default function Header() {
             <div className="header__score">
                 <span>Score</span>
                 {wins}
-                <button
-                    className="header__reset"
-                    onClick={() => {
-                        updateWins(0);
-                    }}
-                >
-                    Reset Score
-                </button>
             </div>
+            <button
+                className="header__reset"
+                onClick={() => {
+                    updateWins(0);
+                }}
+            >
+                Reset Score
+            </button>
         </header>
     );
 }

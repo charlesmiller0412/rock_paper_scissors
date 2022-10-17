@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Image from "next/image";
-import useGameStore from "../appStore";
+import useGameStore from "../../appStore";
 export default function Rules() {
     const setShowRules = useGameStore((state: any) => state.setShowRules);
 
@@ -9,7 +9,9 @@ export default function Rules() {
     }
     useEffect(() => {
         handleClick;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
     return (
         <div className="rules">
             <div className="rules__modal">

@@ -11,6 +11,7 @@
     -moz-border-radius: 1.5rem;
     -ms-border-radius: 1.5rem;
     -o-border-radius: 1.5rem;
+    position: relative;
     &__title {
         height: 11rem;
         width: 11rem;
@@ -41,19 +42,19 @@
     }
     &__reset {
         position: absolute;
-        bottom: -1.8rem;
-        right: 50%;
-        transform: translateX(50%);
+        top: 50%rem;
+        left: 50%;
+        transform: translateX(-50%);
         font-size: 1.4rem;
         white-space: nowrap;
         letter-spacing: 0.25rem;
         background: transparent;
         border: 0;
         color: #fff;
-        -webkit-transform: translateX(50%);
-        -moz-transform: translateX(50%);
-        -ms-transform: translateX(50%);
-        -o-transform: translateX(50%);
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
         transition: all 0.2s;
         -webkit-transition: all 0.2s;
         -moz-transition: all 0.2s;
@@ -88,6 +89,43 @@
                 -ms-transition: all 0.4s;
                 -o-transition: all 0.4s;
             }
+        }
+    }
+}
+
+@media screen and (max-width: 756px) {
+    .header {
+        width: 100%;
+        min-width: 31rem;
+        height: 9.6rem;
+        padding: 2.4rem;
+        padding-right: 1.2rem;
+        border-radius: 0.5rem;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+        &__title {
+            width: 4.8rem;
+            height: 4.9rem;
+        }
+        &__score {
+            font-size: 4rem;
+            line-height: 4rem;
+            padding: 1rem 2.3rem;
+            border-radius: 0.5rem;
+            -webkit-border-radius: 0.5rem;
+            -moz-border-radius: 0.5rem;
+            -ms-border-radius: 0.5rem;
+            -o-border-radius: 0.5rem;
+            & span {
+                font-size: 1rem;
+                letter-spacing: 0.156rem;
+                line-height: auto;
+            }
+        }
+        &__reset {
+            font-size: 1rem;
         }
     }
 }

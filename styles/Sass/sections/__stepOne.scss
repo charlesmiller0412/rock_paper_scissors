@@ -43,3 +43,11 @@
         bottom: 0;
     }
 }
+
+@media screen and (max-width: 756px) {
+    .stepOne {
+        margin: 0 auto;
+        width: 100%;
+        scale: 0.7;
+    }
+}

@@ -1,21 +1,19 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import Header from "../components/header";
 import useGameStore from "../appStore";
-import RulesBtn from "../components/rulesBtn";
-import Rules from "../components/rules";
-import StepOne from "../components/main/stepOne";
-import { PlayAgainBtn } from "../components/main/stepThree/playAgainBtn";
+import RulesBtn from "../components/rules/rulesBtn";
+import Rules from "../components/rules/rules";
+import StepOne from "../components/main/stepOne/stepOne";
 import StepTwo from "../components/main/stepTwo/stepTwo";
 
 const Home: NextPage = () => {
     const showRules = useGameStore((state: any) => state.showRules);
     const wins = useGameStore((state: any) => state.wins);
     const updateWins = useGameStore((state: any) => state.updateWins);
+    const result = useGameStore((state: any) => state.result);
     const input = useGameStore((state: any) => state.input);
-    const setInput = useGameStore((state: any) => state.setInput);
     const aiSelect = useGameStore((state: any) => state.aiSelect);
     const setAiSelect = useGameStore((state: any) => state.setAiSelect);
     const step = useGameStore((state: any) => state.step);
@@ -40,16 +38,16 @@ const Home: NextPage = () => {
     // game logic and main function
     function logic(aiSelect: number, input: number) {
         if (
-            (aiSelect == 0 && input == 4) ||
-            (aiSelect == 0 && input == 2) ||
-            (aiSelect == 1 && input == 0) ||
-            (aiSelect == 1 && input == 3) ||
-            (aiSelect == 2 && input == 1) ||
-            (aiSelect == 2 && input == 4) ||
-            (aiSelect == 3 && input == 2) ||
-            (aiSelect == 3 && input == 0) ||
-            (aiSelect == 4 && input == 3) ||
-            (aiSelect == 4 && input == 1)
+            (aiSelect === 0 && input === 4) ||
+            (aiSelect === 0 && input === 2) ||
+            (aiSelect === 1 && input === 0) ||
+            (aiSelect === 1 && input === 3) ||
+            (aiSelect === 2 && input === 1) ||
+            (aiSelect === 2 && input === 4) ||
+            (aiSelect === 3 && input === 2) ||
+            (aiSelect === 3 && input === 0) ||
+            (aiSelect === 4 && input === 3) ||
+            (aiSelect === 4 && input === 1)
         ) {
             if (wins > 0) {
                 updateWins(wins - 1);
@@ -58,6 +56,7 @@ const Home: NextPage = () => {
         } else if (aiSelect == input) {
             console.log("draw");
             setResult("draw");
+            return;
         } else {
             updateWins(wins + 1);
             setResult("win");
@@ -65,19 +64,25 @@ const Home: NextPage = () => {
     }
 
     function gamePlay() {
+        setResult(null);
         setIsLoading(true);
         getAI();
-        logic(aiSelect, input);
         console.log("input: " + input + " ai: " + aiSelect);
         setTimeout(() => {
             setIsLoading(false);
         }, 1500);
         setTimeout(() => {
+            logic(aiSelect, input);
             document.getElementById("announce")?.classList.add("widen");
             document.getElementById("playAgain")?.classList.add("show");
         }, 3000);
         return;
     }
+
+    useEffect(() => {
+        gamePlay();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [input, aiSelect]);
 
     return (
         <div>
@@ -89,19 +94,12 @@ const Home: NextPage = () => {
                 <Header />
                 {step === 1 ? (
                     <StepOne gamePlay={gamePlay} />
-                ) : step === 2 ? (
-                    <StepTwo />
-                ) : step === 3 ? (
-                    ""
                 ) : (
-                    ""
+                    <StepTwo logic={logic} />
                 )}
                 {showRules ? <Rules /> : ""}
-            </main>
-
-            <footer>
                 <RulesBtn />
-            </footer>
+            </main>
         </div>
     );
 };

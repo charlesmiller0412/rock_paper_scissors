@@ -1,16 +1,14 @@
 import Image from "next/image";
-import { SelectionBtn } from "./stepOne/selectionBtn";
-import useGameStore from "../../appStore";
+import { SelectionBtn } from "./selectionBtn";
+import useGameStore from "../../../appStore";
 
 export default function StepOne({ gamePlay }: any) {
     const setInput = useGameStore((state: any) => state.setInput);
     const setStep = useGameStore((state: any) => state.setStep);
-    const step = useGameStore((state: any) => state.step);
 
     function handleClick(key: number) {
         setInput(Number(key));
         setStep(2);
-        gamePlay();
     }
 
     return (

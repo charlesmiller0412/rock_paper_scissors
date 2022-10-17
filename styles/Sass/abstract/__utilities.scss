@@ -13,6 +13,7 @@
     line-height: 1.9rem;
     letter-spacing: 0.25rem;
     cursor: pointer;
+    z-index: 10;
 
     &:hover {
         color: red;
@@ -31,10 +32,10 @@
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
     width: 145px;
+    position: relative;
     height: 148px;
     border-radius: 50%;
     box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.196706);
-    position: relative;
     transition: all 0.2s;
     -webkit-transition: all 0.2s;
     -moz-transition: all 0.2s;
@@ -82,7 +83,6 @@
         left: 20%;
         top: -10%;
         transform: translate(-25%);
-        z-index: 0;
         position: absolute;
         background-color: #fff;
         opacity: 0;
@@ -110,12 +110,78 @@
     }
 }
 
+#userHalo {
+    top: -50%;
+    left: -50%;
+    transform: translate(-30%, -30%);
+    -webkit-transform: translate(-30%, -30%);
+    -moz-transform: translate(-30%, -30%);
+    -ms-transform: translate(-30%, -30%);
+    -o-transform: translate(-30%, -30%);
+}
+
+#aiHalo {
+    top: -50%;
+    right: -50%;
+    transform: translate(30%, -30%);
+    -webkit-transform: translate(30%, -30%);
+    -moz-transform: translate(30%, -30%);
+    -ms-transform: translate(30%, -30%);
+    -o-transform: translate(30%, -30%);
+}
+.winHalo {
+    position: absolute;
+    &__circle1 {
+        width: 730px;
+        height: 718px;
+        border-radius: 50%;
+        position: relative;
+        background: #ffffff;
+        mix-blend-mode: normal;
+        opacity: 0.05;
+    }
+    &__circle2 {
+        width: 580px;
+        height: 568px;
+        border-radius: 50%;
+        position: absolute;
+        background: #ffffff;
+        mix-blend-mode: normal;
+        opacity: 0.05;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+    }
+    &__circle3 {
+        width: 430px;
+        height: 418px;
+        border-radius: 50%;
+        background: #ffffff;
+        mix-blend-mode: normal;
+        opacity: 0.05;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+    }
+}
+
 .large {
     scale: 2;
+    position: relative;
     &:hover {
-        filter: brightness(1);
-        -webkit-filter: brightness(1);
-        cursor: default;
+        & .selectionBtn__outerRing {
+            opacity: 0;
+            cursor: default;
+        }
     }
 }
 
@@ -181,5 +247,18 @@
         background-color: #fff;
         color: hsl(229, 25%, 31%);
         cursor: pointer;
+    }
+}
+
+@media screen and (max-width: 756px) {
+    .rulesBtn {
+        left: 50%;
+        bottom: 5.6rem;
+        margin: auto;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
     }
 }

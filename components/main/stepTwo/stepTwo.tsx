@@ -1,8 +1,9 @@
-import { useState } from "react";
 import { SelectionBtn } from "../stepOne/selectionBtn";
 import { PlayAgainBtn } from "../stepThree/playAgainBtn";
 import useGameStore from "../../../appStore";
-export default function StepTwo() {
+import { WinHalo } from "../stepThree/winHalo";
+
+export default function StepTwo(props: any) {
     const input = useGameStore((state: any) => state.input);
     const aiSelect = useGameStore((state: any) => state.aiSelect);
     const setStep = useGameStore((state: any) => state.setStep);
@@ -14,6 +15,7 @@ export default function StepTwo() {
             <div className="stepTwo__userPick">
                 <div className="stepTwo__userPick--title">you picked</div>
                 <div className="stepTwo__userPick--icon">
+                    {result == "win" ? <WinHalo id="userHalo" /> : ""}
                     {input === 0 ? (
                         <SelectionBtn
                             className="selectionBtn rock large"
@@ -62,6 +64,12 @@ export default function StepTwo() {
                     <div className="stepTwo__aiPick--pre"></div>
                 ) : (
                     <div className="stepTwo__aiPick--icon">
+                        {result == "loss" ? (
+                            <WinHalo id="aiHalo" logic={props.logic} />
+                        ) : (
+                            ""
+                        )}
+
                         {aiSelect === 0 ? (
                             <SelectionBtn
                                 className="selectionBtn rock large"
