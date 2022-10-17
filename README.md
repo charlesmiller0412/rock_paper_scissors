@@ -1,40 +1,94 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Frontend Mentor - Rock, Paper, Scissors solution
 
-## Getting Started
+This is a solution to the [Rock, Paper, Scissors challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rock-paper-scissors-game-pTgwgvgH). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-First, run the development server:
+## Table of contents
 
-```bash
-npm run dev
-# or
-yarn dev
+- [Frontend Mentor - Rock, Paper, Scissors solution](#frontend-mentor---rock-paper-scissors-solution)
+  - [Table of contents](#table-of-contents)
+  - [Overview](#overview)
+    - [The challenge](#the-challenge)
+    - [Screenshot](#screenshot)
+    - [Links](#links)
+  - [My process](#my-process)
+    - [Built with](#built-with)
+    - [What I learned](#what-i-learned)
+  - [Author](#author)
+  - [Scripts](#scripts)
+
+## Overview
+
+### The challenge
+
+Users should be able to:
+
+-   View the optimal layout for the game depending on their device's screen size
+-   Play Rock, Paper, Scissors against the computer
+-   Maintain the state of the score after refreshing the browser _(optional)_
+-   **Bonus**: Play Rock, Paper, Scissors, Lizard, Spock against the computer _(optional)_
+
+### Screenshot
+
+![](./Project%20Display%20Images/../../Project%20Display%20Images/rpslsDesktop.png)
+
+Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
+
+Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it.
+
+Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
+
+**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
+
+### Links
+
+-   Solution URL: [https://github.com/charlesmiller0412/rock_paper_scissors](https://github.com/charlesmiller0412/rock_paper_scissors)
+-   Live Site URL: [https://rock-paper-scissors-ruddy-ten.vercel.app/](https://rock-paper-scissors-ruddy-ten.vercel.app/)
+
+## My process
+
+### Built with
+
+-   TypeSctipt
+-   CSS custom properties
+-   [React](https://reactjs.org/) - JS library
+-   [Next.js](https://nextjs.org/) - React framework
+-   Sass / SCSS - CSS Compiler
+-   [Block Element Modifier - BEM](https://getbem.com)
+-   [Zustand](https://github.com/pmndrs/zustand) - State Management
+
+### What I learned
+
+The gameplay function was a fun challenge to get the timings down on adding the width as the result is displayed. I didn't want the difference in width to just flash to the wider image so I added classes to give a smooth transition.
+
+```js
+function gamePlay() {
+    setResult(null);
+    setIsLoading(true);
+    getAI();
+    console.log("input: " + input + " ai: " + aiSelect);
+    setTimeout(() => {
+        setIsLoading(false);
+    }, 1500);
+    setTimeout(() => {
+        logic(aiSelect, input);
+        document.getElementById("announce")?.classList.add("widen");
+        document.getElementById("playAgain")?.classList.add("show");
+    }, 3000);
+    return;
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+**Note: Delete this note and the content within this section and replace with your own learnings.**
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Author
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
--   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+-   Website - [Charles Miller](https://charlesmiller.dev)
+-   Frontend Mentor - [@charlesmiller0412](https://www.frontendmentor.io/profile/charlesmiller0412)
 
 ## Scripts
 
-`npm run dev`
-
 `npm run sass`
+
+`npm run dev`
