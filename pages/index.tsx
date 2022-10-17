@@ -37,6 +37,7 @@ const Home: NextPage = () => {
 
     // game logic and main function
     function logic(aiSelect: number, input: number) {
+        setResult(null);
         if (
             (aiSelect === 0 && input === 4) ||
             (aiSelect === 0 && input === 2) ||
@@ -64,7 +65,6 @@ const Home: NextPage = () => {
     }
 
     function gamePlay() {
-        setResult(null);
         setIsLoading(true);
         getAI();
         console.log("input: " + input + " ai: " + aiSelect);
