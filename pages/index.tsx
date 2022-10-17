@@ -12,7 +12,6 @@ const Home: NextPage = () => {
     const showRules = useGameStore((state: any) => state.showRules);
     const wins = useGameStore((state: any) => state.wins);
     const updateWins = useGameStore((state: any) => state.updateWins);
-    const result = useGameStore((state: any) => state.result);
     const input = useGameStore((state: any) => state.input);
     const aiSelect = useGameStore((state: any) => state.aiSelect);
     const setAiSelect = useGameStore((state: any) => state.setAiSelect);
@@ -37,7 +36,6 @@ const Home: NextPage = () => {
 
     // game logic and main function
     function logic(aiSelect: number, input: number) {
-        setResult(null);
         if (
             (aiSelect === 0 && input === 4) ||
             (aiSelect === 0 && input === 2) ||
@@ -65,6 +63,7 @@ const Home: NextPage = () => {
     }
 
     function gamePlay() {
+        setResult(null);
         setIsLoading(true);
         getAI();
         console.log("input: " + input + " ai: " + aiSelect);
